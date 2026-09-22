@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Siegfried Minnie | Cybersecurity</title>
+<meta name="description" content="Portfolio of Siegfried Minnie, cybersecurity professional. CompTIA Security+ and ISC2 CC certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF0F3; --surface:#FFFFFF; --sunk:#E2E7ED; --ink:#16233A; --muted:#4E5B6E; --line:#CCD4DD;
+  --alert:#A85D12; --alert-bg:#FBEBD6; --ok:#1F6E68; --ok-bg:#DDEFEC;
+  --console:#16233A; --console-ink:#C9D4E2; --console-dim:#7F8EA3;
+  --display:"Archivo", "Helvetica Neue", Helvetica, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1726; --surface:#17223A; --sunk:#131D31; --ink:#E6ECF3; --muted:#A0ADBE; --line:#2A3854;
+    --alert:#F0A650; --alert-bg:#3A2A16; --ok:#6CCABE; --ok-bg:#15332F;
+    --console:#0A111D; --console-ink:#C9D4E2; --console-dim:#6F7F95;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1726; --surface:#17223A; --sunk:#131D31; --ink:#E6ECF3; --muted:#A0ADBE; --line:#2A3854;
+  --alert:#F0A650; --alert-bg:#3A2A16; --ok:#6CCABE; --ok-bg:#15332F;
+  --console:#0A111D; --console-ink:#C9D4E2; --console-dim:#6F7F95;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--alert);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:center;height:60px;gap:16px}
+.brand{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 110;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav a.link{display:block;padding:10px 12px;font-size:15px;text-decoration:none;color:var(--muted);border-radius:8px;white-space:nowrap}
+.nav a.link:hover,.nav a.link[aria-current="true"]{color:var(--ink);background:var(--sunk)}
+@media (max-width:760px){.nav{display:none}}
+
+/* hero */
+.hero{padding:72px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:36px}.hero{padding:48px 0}}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--ok);background:var(--ok-bg);padding:6px 14px 6px 12px;border-radius:999px;font-weight:500}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
+h1{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 112;font-size:clamp(46px,7.4vw,92px);line-height:.94;letter-spacing:-.035em;margin:22px 0 18px}
+h1 .last{display:block;font-variation-settings:"wdth" 62;font-weight:400;letter-spacing:-.02em;color:var(--muted)}
+.role{font-size:clamp(19px,2.2vw,23px);line-height:1.45;max-width:30ch;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;font:500 16px var(--body);text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn svg{width:18px;height:18px}
+
+/* console */
+.console{background:var(--console);color:var(--console-ink);border-radius:14px;font-family:var(--mono);font-size:13px;line-height:1.55;overflow:hidden;box-shadow:0 24px 50px -28px rgba(10,20,40,.55)}
+.console-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-family:var(--body);font-size:13px;color:var(--console-dim)}
+.console-head b{color:var(--console-ink);font-weight:500}
+.counts{display:flex;gap:14px}
+.counts span{white-space:nowrap}
+.counts em{font-style:normal;color:var(--console-ink);font-family:var(--mono)}
+.feed{height:292px;overflow:hidden;padding:12px 16px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;mask-image:linear-gradient(to bottom,transparent,#000 28%)}
+.ln{display:grid;grid-template-columns:auto 1fr;gap:12px;white-space:nowrap}
+.ln .t{color:var(--console-dim)}
+.ln .m{overflow:hidden;text-overflow:ellipsis}
+.ln.hit .m{color:#F5B865}
+.ln.esc{background:rgba(245,184,101,.12);border-radius:4px;margin:0 -6px;padding:0 6px}
+.ln.esc .m{color:#FFD39A}
+.ln.ok .m{color:#7FD6CA}
+.console-foot{padding:10px 16px 14px;border-top:1px solid rgba(255,255,255,.08);font-family:var(--body);font-size:13px;color:var(--console-dim);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.pause{background:none;border:1px solid rgba(255,255,255,.18);color:var(--console-ink);border-radius:8px;font:500 13px var(--body);padding:8px 12px;min-height:36px;cursor:pointer}
+
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+@media (max-width:760px){section{padding:52px 0}}
+.sec-head{display:grid;grid-template-columns:260px 1fr;gap:40px;margin-bottom:36px}
+@media (max-width:900px){.sec-head{grid-template-columns:1fr;gap:10px}}
+h2{font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 100;font-size:clamp(30px,3.6vw,42px);line-height:1.05;letter-spacing:-.025em;margin:0}
+.sec-head p{margin:0;color:var(--muted);max-width:62ch}
+.indent{margin-left:300px}
+@media (max-width:900px){.indent{margin-left:0}}
+
+/* summary */
+.summary{font-size:clamp(19px,2vw,22px);line-height:1.55;max-width:60ch;margin:0 0 18px}
+.summary + .summary{font-size:18px;color:var(--muted)}
+
+/* certs */
+.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:1000px){.certs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.certs{grid-template-columns:1fr}}
+.cert .state.prog{color:var(--alert)}
+.seal.prog{background:var(--alert-bg);color:var(--alert)}
+.cert{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px;min-height:200px}
+.seal{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--ok-bg);color:var(--ok)}
+.seal svg{width:26px;height:26px}
+.cert h3{font-family:var(--display);font-variation-settings:"wdth" 100;font-weight:700;font-size:22px;line-height:1.15;margin:0}
+.cert p{margin:0;color:var(--muted);font-size:15px}
+.cert .state{margin-top:auto;font-size:14px;font-weight:600;color:var(--ok)}
+
+/* skills */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filter{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:500 15px var(--body);cursor:pointer}
+.filter:hover{border-color:var(--ink)}
+.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.skill[hidden]{display:none}
+.skill b{display:block;font-weight:600;font-size:16px;line-height:1.35}
+.skill small{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+.skill .lvl{display:inline-block;margin-top:8px;font-size:13px;color:var(--alert);background:var(--alert-bg);padding:2px 8px;border-radius:6px}
+.count{color:var(--muted);font-size:15px;margin:0 0 14px}
+
+/* practical */
+.cases{display:flex;flex-direction:column;gap:12px}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.case summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:20px 22px;min-height:44px}
+.case summary::-webkit-details-marker{display:none}
+.case h3{margin:0;font-family:var(--display);font-variation-settings:"wdth" 100;font-weight:700;font-size:20px;line-height:1.25}
+.case .src{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+.chev{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:transform .2s}
+.chev svg{width:16px;height:16px}
+.case[open] .chev{transform:rotate(180deg);border-color:var(--ink)}
+.case ul{margin:0;padding:0 22px 22px 44px;color:var(--ink)}
+.case li{margin:6px 0;max-width:72ch}
+.case li::marker{color:var(--alert)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 22px 20px}
+.repo{padding:0 22px 22px}
+.live{display:inline-block;margin-right:10px;font-size:13px;font-weight:600;color:var(--alert);background:var(--alert-bg);padding:1px 8px;border-radius:6px}
+.tags span{font-size:13px;padding:3px 10px;border-radius:6px;background:var(--sunk);color:var(--muted)}
+
+/* experience */
+.roles{display:flex;flex-direction:column;gap:20px}
+.job{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.job-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;align-items:flex-start;margin-bottom:18px}
+.job h3{margin:0;font-family:var(--display);font-variation-settings:"wdth" 100;font-weight:700;font-size:24px;line-height:1.2}
+.job .where{color:var(--muted);font-size:15px;margin-top:4px}
+.toggle{display:inline-flex;background:var(--sunk);border-radius:10px;padding:4px;gap:2px}
+.toggle button{min-height:40px;padding:0 14px;border:0;border-radius:7px;background:transparent;color:var(--muted);font:500 14px var(--body);cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.job ul{margin:0;padding-left:20px}
+.job li{margin:7px 0;max-width:72ch}
+.job li::marker{color:var(--ok)}
+.job .view[hidden]{display:none}
+.hint{font-size:14px;color:var(--muted);margin:16px 0 0}
+
+/* strengths */
+.strengths{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.strengths li{padding:18px 20px 18px 0;border-bottom:1px solid var(--line);font-size:17px}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:20px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.contact h2{font-size:clamp(34px,5vw,56px);color:var(--bg)}
+.contact p{color:color-mix(in srgb,var(--bg) 75%,transparent);max-width:44ch}
+.channels{display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0}
+.channels a,.channels button{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:12px 16px;border-radius:12px;border:1px solid color-mix(in srgb,var(--bg) 22%,transparent);background:transparent;color:var(--bg);font:500 16px var(--body);text-decoration:none;text-align:left;cursor:pointer;word-break:break-word}
+.channels a:hover,.channels button:hover{background:color-mix(in srgb,var(--bg) 8%,transparent)}
+.channels svg{width:20px;height:20px;flex:none}
+.channels small{display:block;font-size:13px;font-weight:400;opacity:.7}
+.contact :focus-visible{outline-color:var(--bg)}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;min-height:40px;padding:0 12px;font:500 14px var(--body);cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--ok);color:#fff;padding:12px 18px;border-radius:10px;font-weight:500;transition:.25s;pointer-events:none;z-index:20}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion: reduce){.status i{animation:none}.btn,.chev,.toast{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <ul>
+      <li><a class="link" href="#about">About</a></li>
+      <li><a class="link" href="#certs">Certifications</a></li>
+      <li><a class="link" href="#skills">Skills</a></li>
+      <li><a class="link" href="#projects">Projects</a></li>
+      <li><a class="link" href="#labs">Simulations &amp; labs</a></li>
+      <li><a class="link" href="#experience">Experience</a></li>
+      <li><a class="link" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <span class="status"><i aria-hidden="true"></i>Open to cybersecurity roles</span>
+        <h1>Siegfried<span class="last">Minnie</span></h1>
+        <p class="role">Cybersecurity professional with CompTIA Security+ and ISC2 CC, bringing a police investigator's discipline to threat detection and incident response.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Get in touch</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/siegfried-minnie-cc-79664418b" target="_blank" rel="noopener">View LinkedIn</a>
+          <a class="btn ghost" href="https://share.google/3ftGLNx1pvjqXxftJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
+        </div>
+      </div>
+
+      <div class="console" role="region" aria-label="Simulated SIEM alert feed">
+        <div class="console-head">
+          <b>Live triage (simulated)</b>
+          <div class="counts" aria-live="off">
+            <span>Events <em id="cEvents">0</em></span>
+            <span>Flagged <em id="cFlag">0</em></span>
+            <span>Escalated <em id="cEsc">0</em></span>
+          </div>
+        </div>
+        <div class="feed" id="feed" aria-hidden="true"></div>
+        <div class="console-foot">
+          <span>The kind of stream I read every day in the lab</span>
+          <button class="pause" id="pause" type="button" aria-pressed="false">Pause feed</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2>About</h2><div>
+        <p class="summary">CompTIA Security+ and ISC2 Certified in Cybersecurity professional with hands-on experience in SIEM monitoring, incident triage, threat detection, log analysis and incident response.</p>
+        <p class="summary">My practical experience comes from LetsDefend, TryHackMe, my own cybersecurity home lab and industry job simulations, with a strong foundation in network security, EDR tools and Microsoft 365/Azure cloud security. I work with Microsoft Sentinel, Splunk, QRadar, Wazuh and the MITRE ATT&amp;CK framework, and I bring a disciplined investigative mindset, risk assessment expertise and documentation accuracy developed through law enforcement service.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="wrap">
+      <div class="sec-head"><h2>Certifications</h2><p>Industry-recognised credentials backed by a structured SOC training path.</p></div>
+      <div class="certs">
+        <article class="cert">
+          <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.4 8 9 4.6-.6 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>CompTIA Security+</h3>
+          <p>Core security operations, threats and vulnerabilities, architecture, and incident response.</p>
+          <span class="state">Certified</span>
+        </article>
+        <article class="cert">
+          <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.4 8 9 4.6-.6 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>ISC2 Certified in Cybersecurity (CC)</h3>
+          <p>Security principles, access control, network security and security operations.</p>
+          <span class="state">Certified</span>
+        </article>
+        <article class="cert">
+          <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 14 4-4 3 3 5-6"/></svg></div>
+          <h3>LetsDefend SIEM Engineer Career Path</h3>
+          <p>Alert triage, log correlation and incident documentation in a simulated 24/7 SOC.</p>
+          <span class="state">Completed</span>
+        </article>
+        <article class="cert">
+          <div class="seal prog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <h3>CompTIA CySA+</h3>
+          <p>Security operations, threat and vulnerability management, incident response and reporting.</p>
+          <span class="state prog">In progress</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head"><h2>Skills</h2><p>Filter by area to see the tools and techniques I work with.</p></div>
+      <div class="filters" role="group" aria-label="Filter skills">
+        <button class="filter" type="button" data-f="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-f="soc" aria-pressed="false">SOC operations</button>
+        <button class="filter" type="button" data-f="siem" aria-pressed="false">SIEM &amp; tools</button>
+        <button class="filter" type="button" data-f="net" aria-pressed="false">Systems &amp; networking</button>
+        <button class="filter" type="button" data-f="sec" aria-pressed="false">Security concepts</button>
+        <button class="filter" type="button" data-f="code" aria-pressed="false">Scripting</button>
+      </div>
+      <p class="count" id="skillCount" aria-live="polite"></p>
+      <ul class="skills" id="skills-list"></ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head"><h2>Projects</h2><p>What I'm building. Open a project for the detail.</p></div>
+      <div class="cases">
+        <details class="case" open>
+          <summary><div><h3>Cloud Security AI Assistant</h3><span class="src"><span class="live">In development</span>Python, OpenAI API, RAG</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Developing an AI-powered assistant using Python and the OpenAI API that gives guidance on Microsoft Azure security concepts, cloud security best practices and threat mitigation</li>
+            <li>Implementing Retrieval-Augmented Generation (RAG) so answers come from curated security documentation, not the base model alone</li>
+            <li>Using GitHub version control, prompt engineering, secure API handling and modular application design, while gaining practical experience with AI agents and LLM-based security tooling</li>
+            <li>Expanding it to support Azure security recommendations, security assessments and cloud security learning workflows</li>
+          </ul>
+          <div class="tags"><span>Azure security</span><span>RAG</span><span>LLM tooling</span><span>Secure API handling</span></div>
+          <div class="repo"><a class="btn ghost" href="https://share.google/ZmmnGlQERUKmSQRhJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>View the repo</a></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>POPIA Compliance Platform for SMEs</h3><span class="src"><span class="live">In development</span>Cloud-based compliance</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Designing a cloud-based solution that simplifies POPIA compliance for South African small and medium-sized businesses</li>
+            <li>Developing compliance assessments, policy management, risk identification, evidence collection, remediation tracking and automated compliance reporting</li>
+            <li>Applying cybersecurity governance, risk management, privacy-by-design and secure application architecture throughout the project lifecycle</li>
+            <li>Building for scale so the platform can support future regulatory frameworks and security compliance requirements</li>
+          </ul>
+          <div class="tags"><span>GRC</span><span>POPIA</span><span>Privacy by design</span><span>Secure architecture</span></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>Identity &amp; Access Management Enterprise Simulation</h3><span class="src">Completed</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Completed a hands-on enterprise IAM implementation simulation focused on designing secure identity and access management solutions</li>
+            <li>Conducted IAM readiness assessments and developed secure authentication, user lifecycle management and access governance strategies</li>
+            <li>Applied RBAC, MFA, Zero Trust, identity governance, Privileged Access Management (PAM) and secure provisioning</li>
+            <li>Produced implementation roadmaps, technical documentation, risk assessments and recommendations covering cloud services, legacy infrastructure and third-party platforms</li>
+          </ul>
+          <div class="tags"><span>RBAC</span><span>MFA</span><span>Zero Trust</span><span>PAM</span></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="labs">
+    <div class="wrap">
+      <div class="sec-head"><h2>Simulations &amp; labs</h2><p>Industry job simulations, SOC training and lab investigations. Open any entry for the detail.</p></div>
+      <div class="cases">
+        <details class="case">
+          <summary><div><h3>SIEM Engineer Career Path</h3><span class="src">LetsDefend</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Monitored and triaged security alerts in a simulated 24/7 SOC environment</li>
+            <li>Investigated real-world attack scenarios including phishing, brute force and malware activity</li>
+            <li>Performed log correlation across multiple data sources to identify suspicious behaviour</li>
+            <li>Validated alerts and escalated confirmed incidents with supporting evidence</li>
+            <li>Documented incidents following structured SOC reporting standards</li>
+          </ul>
+          <div class="tags"><span>Alert triage</span><span>Log correlation</span><span>Escalation</span><span>Reporting</span></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>Cybersecurity home lab</h3><span class="src">Self-built</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Simulated and investigated attacks: phishing, ransomware and privilege escalation</li>
+            <li>Conducted IOC analysis, including IP and domain reputation checks and log review</li>
+            <li>Tuned detection rules to reduce false positives</li>
+            <li>Practised structured incident documentation and escalation workflows</li>
+            <li>Applied MITRE ATT&amp;CK mapping to understand attacker techniques</li>
+          </ul>
+          <div class="tags"><span>IOC analysis</span><span>Detection tuning</span><span>MITRE ATT&amp;CK</span></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>Cyber Job Simulation</h3><span class="src">Deloitte Australia, via Forage</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Analysed web activity logs to identify suspicious behaviour and potential security threats</li>
+            <li>Supported a simulated client during a breach investigation by reviewing user activity and assisting with incident response</li>
+            <li>Investigated suspicious user activity, strengthening analytical, problem-solving and incident analysis skills</li>
+          </ul>
+          <div class="tags"><span>Web log analysis</span><span>Breach investigation</span><span>Incident response</span></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>Security Analyst Job Simulation</h3><span class="src">Tata, via Forage</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Applied IAM principles including user lifecycle management, access control, authentication and least privilege in enterprise environments</li>
+            <li>Analysed organisational security requirements and explored IAM-focused solutions to support efficiency and reduce risk</li>
+            <li>Delivered documentation and presentations explaining complex technical concepts to technical and non-technical stakeholders</li>
+          </ul>
+          <div class="tags"><span>IAM</span><span>Least privilege</span><span>Stakeholder communication</span></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>Cybersecurity Virtual Experience</h3><span class="src">Mastercard, via Forage</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Served as an analyst on Mastercard's Security Awareness Team</li>
+            <li>Helped identify and report security threats such as phishing</li>
+            <li>Identified which areas of the business needed stronger security training, and implemented courses and procedures for those teams</li>
+          </ul>
+          <div class="tags"><span>Phishing</span><span>Security awareness</span><span>Training design</span></div>
+        </details>
+        <details class="case">
+          <summary><div><h3>TryHackMe labs</h3><span class="src">Ongoing</span></div><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <ul>
+            <li>Completing hands-on labs covering threat detection, network analysis and system exploitation fundamentals</li>
+            <li>Practising log analysis, reconnaissance and incident investigation in guided environments</li>
+            <li>Gaining exposure to real attack methods including privilege escalation, lateral movement and web application vulnerabilities</li>
+            <li>Reinforcing networking, Linux and security concepts through practical scenarios</li>
+            <li>Developing a structured, investigative approach aligned with SOC analysis workflow</li>
+          </ul>
+          <div class="tags"><span>Threat detection</span><span>Linux</span><span>Lateral movement</span><span>Web vulnerabilities</span></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head"><h2>Experience</h2><p>Each role has a cybersecurity view. Switch it on to see how the day-to-day work carries over to security operations.</p></div>
+      <div class="roles">
+        <article class="job">
+          <div class="job-top">
+            <div><h3>Police Officer, Public Order Policing</h3><div class="where">South Africa, April 2022 to present</div></div>
+            <div class="toggle" role="group" aria-label="View for police officer role">
+              <button type="button" aria-pressed="true" data-v="duty">On the job</button>
+              <button type="button" aria-pressed="false" data-v="soc">In cybersecurity</button>
+            </div>
+          </div>
+          <ul class="view" data-view="duty">
+            <li>Respond to real-time incidents requiring rapid assessment and escalation</li>
+            <li>Follow strict procedures and protocols under high-pressure conditions</li>
+            <li>Conduct investigations and produce detailed, accurate reports</li>
+            <li>Maintain situational awareness and risk assessment in dynamic environments</li>
+            <li>Work in coordinated teams with clear communication and handovers</li>
+          </ul>
+          <ul class="view" data-view="soc" hidden>
+            <li>Real-time incident response and decision-making</li>
+            <li>Strong investigative and analytical mindset</li>
+            <li>Accurate documentation and reporting</li>
+            <li>Strict adherence to SOPs and escalation protocols</li>
+            <li>Shift-based operational readiness, suited to 24/7 shift environments</li>
+          </ul>
+        </article>
+        <article class="job">
+          <div class="job-top">
+            <div><h3>Assistant Manager, Takealot</h3><div class="where">South Africa, September 2021 to April 2022</div></div>
+            <div class="toggle" role="group" aria-label="View for assistant manager role">
+              <button type="button" aria-pressed="true" data-v="duty">On the job</button>
+              <button type="button" aria-pressed="false" data-v="soc">In cybersecurity</button>
+            </div>
+          </div>
+          <ul class="view" data-view="duty">
+            <li>Monitored operations and identified anomalies in workflow performance</li>
+            <li>Managed incident reporting, escalation and resolution processes</li>
+            <li>Enforced SOP compliance across team operations</li>
+            <li>Analysed operational data to improve efficiency and reduce errors</li>
+          </ul>
+          <ul class="view" data-view="soc" hidden>
+            <li>Monitoring and anomaly detection mindset</li>
+            <li>Incident handling and structured escalation</li>
+            <li>Process enforcement and attention to detail</li>
+            <li>Team coordination and communication</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="strengths">
+    <div class="wrap">
+      <div class="sec-head"><h2>Strengths</h2><div>
+        <ul class="strengths">
+          <li>Attention to detail and accuracy in investigations</li>
+          <li>Follows structured procedures consistently</li>
+          <li>Clear written and verbal incident reporting</li>
+          <li>Adaptable in shift-based, high-pressure environments</li>
+          <li>Driven to grow within cybersecurity and SOC operations</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Let's talk</h2>
+          <p>I'm looking for my first cybersecurity role and I'm ready for shift work. References are available on request.</p>
+        </div>
+        <ul class="channels">
+          <li><button type="button" id="copyEmail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span>siegm60@gmail.com<small>Copy email address</small></span></button></li>
+          <li><a href="mailto:siegm60@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+            <span>Send an email<small>Opens your mail app</small></span></a></li>
+          <li><a href="tel:+27737474498">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span>+27 73 747 4498<small>South Africa</small></span></a></li>
+          <li><a href="https://www.linkedin.com/in/siegfried-minnie-cc-79664418b" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <span>LinkedIn<small>siegfried-minnie-cc</small></span></a></li>
+          <li><a href="https://share.google/3ftGLNx1pvjqXxftJ" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            <span>GitHub<small>Projects and code</small></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Siegfried Johann Minnie, South Africa</span>
+    <button class="theme" id="theme" type="button">Switch to dark theme</button>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  // ---------- Skills ----------
+  var skills = [
+    ["soc","SIEM monitoring","Microsoft Sentinel, Splunk","Foundational"],
+    ["soc","Security event analysis & log correlation"],
+    ["soc","Incident triage & escalation"],
+    ["soc","Endpoint detection & response (EDR)"],
+    ["soc","Threat detection & vulnerability identification"],
+    ["soc","MITRE ATT&CK framework","","Foundational"],
+    ["soc","Incident response lifecycle"],
+    ["soc","Threat hunting","","Entry-level"],
+    ["soc","Ticketing systems & documentation"],
+    ["soc","Risk assessment & pattern recognition"],
+    ["siem","Splunk Enterprise","SPL queries, dashboards, alerts"],
+    ["siem","IBM QRadar","Offense analysis, rule tuning"],
+    ["siem","Wazuh / Elastic Stack","Endpoint monitoring, file integrity monitoring"],
+    ["siem","TheHive","Case management, investigation workflows"],
+    ["siem","Microsoft Sentinel","SIEM monitoring and alerting"],
+    ["net","TCP/IP, DNS, DHCP, HTTP/S","Ports and network protocols"],
+    ["net","Windows & Linux administration"],
+    ["net","Azure Active Directory & Group Policy","Basic management and investigation","Basic"],
+    ["net","Firewall, IDS/IPS concepts"],
+    ["sec","Microsoft 365 & Azure security","","Fundamentals"],
+    ["sec","Cloud fundamentals","AWS and Azure","Basics"],
+    ["sec","Firewalls & endpoint protection"],
+    ["sec","Phishing detection"],
+    ["sec","Malware analysis","","Basic"],
+    ["code","PowerShell","Scripting for analysis and automation","Basic"],
+    ["code","Bash","Scripting for analysis and automation","Basic"],
+    ["code","Python","Scripting for analysis and automation","Basic"]
+  ];
+  var list = document.getElementById('skills-list');
+  var count = document.getElementById('skillCount');
+  skills.forEach(function(s){
+    var li = document.createElement('li');
+    li.className = 'skill'; li.dataset.cat = s[0];
+    var b = document.createElement('b'); b.textContent = s[1]; li.appendChild(b);
+    if (s[2]) { var sm = document.createElement('small'); sm.textContent = s[2]; li.appendChild(sm); }
+    if (s[3]) { var l = document.createElement('span'); l.className = 'lvl'; l.textContent = s[3]; li.appendChild(l); }
+    list.appendChild(li);
+  });
+  function applyFilter(f){
+    var n = 0;
+    list.querySelectorAll('.skill').forEach(function(el){
+      var show = f === 'all' || el.dataset.cat === f;
+      el.hidden = !show; if (show) n++;
+    });
+    count.textContent = 'Showing ' + n + ' of ' + skills.length + ' skills';
+  }
+  document.querySelectorAll('.filter').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      applyFilter(btn.dataset.f);
+    });
+  });
+  applyFilter('all');
+
+  // ---------- Experience toggles ----------
+  document.querySelectorAll('.job').forEach(function(job){
+    var btns = job.querySelectorAll('.toggle button');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+        job.querySelectorAll('.view').forEach(function(v){ v.hidden = v.dataset.view !== btn.dataset.v; });
+      });
+    });
+  });
+
+  // ---------- Simulated feed ----------
+  var feed = document.getElementById('feed');
+  var cE = document.getElementById('cEvents'), cF = document.getElementById('cFlag'), cX = document.getElementById('cEsc');
+  var ev = 0, fl = 0, es = 0;
+  var hosts = ['WS-014','WS-022','SRV-DC01','WS-031','SRV-WEB02','LT-107'];
+  var users = ['j.naidoo','t.botha','svc_backup','a.dlamini','k.smith'];
+  function ip(){ return [185,45,103,91][Math.floor(Math.random()*4)] + '.' + r(1,254) + '.' + r(1,254) + '.' + r(1,254); }
+  function r(a,b){ return a + Math.floor(Math.random()*(b-a+1)); }
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  var normal = [
+    function(){ return 'auth: 4624 logon success ' + pick(users) + ' on ' + pick(hosts); },
+    function(){ return 'dns: query ' + pick(['login.microsoftonline.com','updates.vendor.net','cdn.office.net','api.github.com']); },
+    function(){ return 'fw: allow tcp/443 ' + pick(hosts) + ' outbound'; },
+    function(){ return 'wazuh: FIM baseline check ok on ' + pick(hosts); },
+    function(){ return 'edr: signature update applied ' + pick(hosts); },
+    function(){ return 'o365: mailbox sync ' + pick(users); }
+  ];
+  var suspicious = [
+    function(){ return 'auth: 4625 failed logon x' + r(12,48) + ' for admin from ' + ip(); },
+    function(){ return 'edr: powershell -enc spawned by winword.exe on ' + pick(hosts); },
+    function(){ return 'mail: link to newly registered domain sent to ' + pick(users); },
+    function(){ return 'dns: high-entropy subdomain queries from ' + pick(hosts); }
+  ];
+  function stamp(){ var d = new Date(); return d.toTimeString().slice(0,8); }
+  function add(msg, cls){
+    var row = document.createElement('div'); row.className = 'ln' + (cls ? ' ' + cls : '');
+    var t = document.createElement('span'); t.className = 't'; t.textContent = stamp();
+    var m = document.createElement('span'); m.className = 'm'; m.textContent = msg;
+    row.appendChild(t); row.appendChild(m); feed.appendChild(row);
+    while (feed.children.length > 22) feed.removeChild(feed.firstChild);
+  }
+  var pending = null;
+  function tick(){
+    ev++;
+    if (pending) {
+      var p = pending; pending = null;
+      if (Math.random() < .5) { es++; add('triage: correlated, true positive, escalated with evidence', 'esc'); }
+      else { add('triage: validated as benign, closed with notes', 'ok'); }
+    } else if (Math.random() < .14) {
+      fl++; add(pick(suspicious)(), 'hit'); pending = true;
+    } else {
+      add(pick(normal)());
+    }
+    cE.textContent = ev; cF.textContent = fl; cX.textContent = es;
+  }
+  for (var i = 0; i < 14; i++) tick();
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timer = null;
+  var pauseBtn = document.getElementById('pause');
+  function start(){ timer = setInterval(tick, 900); pauseBtn.textContent = 'Pause feed'; pauseBtn.setAttribute('aria-pressed','false'); }
+  function stop(){ clearInterval(timer); timer = null; pauseBtn.textContent = 'Resume feed'; pauseBtn.setAttribute('aria-pressed','true'); }
+  if (reduced) stop(); else start();
+  pauseBtn.addEventListener('click', function(){ timer ? stop() : start(); });
+
+  // ---------- Copy email ----------
+  var toast = document.getElementById('toast');
+  function say(msg){ toast.textContent = msg; toast.classList.add('show'); setTimeout(function(){ toast.classList.remove('show'); }, 2200); }
+  document.getElementById('copyEmail').addEventListener('click', function(){
+    var email = 'siegm60@gmail.com';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function(){ say('Email address copied'); }, function(){ say('Copy blocked. Email: ' + email); });
+    } else { say('Email: ' + email); }
+  });
+
+  // ---------- Nav highlight ----------
+  var links = document.querySelectorAll('.nav a.link');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) links.forEach(function(a){ a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section[id]').forEach(function(s){ io.observe(s); });
+  }
+
+  // ---------- Theme ----------
+  var root = document.documentElement, tb = document.getElementById('theme');
+  function isDark(){
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label(){ tb.textContent = isDark() ? 'Switch to light theme' : 'Switch to dark theme'; }
+  try { var saved = localStorage.getItem('sm-theme'); if (saved) root.setAttribute('data-theme', saved); } catch(e){}
+  label();
+  tb.addEventListener('click', function(){
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('sm-theme', next); } catch(e){}
+    label();
+  });
+})();
+</script>
+</body>
+</html>
