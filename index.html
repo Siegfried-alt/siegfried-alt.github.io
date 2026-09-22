@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Siegfried Minnie | Cybersecurity</title>
 <meta name="description" content="Portfolio of Siegfried Minnie, SOC Analyst at Cyber83. CompTIA Security+ and ISC2 CC certified.">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -65,6 +66,19 @@ h1 .ln+.ln{color:var(--hot)}
 .btn.o{background:transparent;color:var(--text);border-color:var(--line)}
 .btn.o:hover{border-color:var(--text)}
 .btn svg{width:18px;height:18px}
+
+
+/* load sequence */
+h1 .ch{display:inline-block;text-align:center;opacity:.55;transition:opacity .35s ease-out}
+h1 .ch.on{opacity:1}
+.js .hero .intro-item{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform}
+.hero.ready .intro-item{opacity:1;transform:none}
+.hero.ready .intro-item:nth-child(2){transition-delay:.08s}
+.hero.ready .intro-item:nth-child(3){transition-delay:.5s}
+.hero.ready .intro-item:nth-child(4){transition-delay:.62s}
+.js .hero .radar.intro-item{transform:scale(.96);transition-duration:1.1s}
+.hero.ready .radar.intro-item{transform:none;transition-delay:.3s}
+@media (prefers-reduced-motion: reduce){.hero .intro-item,.hero .radar.intro-item{opacity:1;transform:none;transition:none}h1 .ch{opacity:1;transition:none}}
 
 /* radar */
 .radar{position:relative}
@@ -227,16 +241,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   <header class="hero">
     <div class="wrap">
       <div>
-        <span class="status"><i aria-hidden="true"></i>SOC Analyst at Cyber83 from October 2026</span>
-        <h1 aria-label="Siegfried Minnie"><span class="ln" data-text="Siegfried" aria-hidden="true">Siegfried</span><span class="ln" data-text="Minnie" aria-hidden="true">Minnie</span></h1>
-        <p class="lede"><b>CompTIA Security+ and ISC2 CC</b> certified, bringing a police investigator's discipline to threat detection and incident response.</p>
-        <div class="acts">
+        <span class="status intro-item"><i aria-hidden="true"></i>SOC Analyst at Cyber83 from October 2026</span>
+        <h1 class="intro-item" aria-label="Siegfried Minnie"><span class="ln" data-text="Siegfried" aria-hidden="true">Siegfried</span><span class="ln" data-text="Minnie" aria-hidden="true">Minnie</span></h1>
+        <p class="lede intro-item"><b>CompTIA Security+ and ISC2 CC</b> certified, bringing a police investigator's discipline to threat detection and incident response.</p>
+        <div class="acts intro-item">
           <a class="btn" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Get in touch</a>
           <a class="btn o" href="https://www.linkedin.com/in/siegfried-minnie-cc-79664418b" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn o" href="https://share.google/3ftGLNx1pvjqXxftJ" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-      <div class="radar">
+      <div class="radar intro-item">
         <div class="scope" id="scope">
           <canvas id="radar" aria-hidden="true"></canvas>
         </div>
@@ -324,22 +338,44 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   var arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>';
   var gh = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>';
 
-  // ---------- name decrypt ----------
-  var glyphs = 'ABCDEF0123456789#%&@$<>/\\{}';
-  document.querySelectorAll('h1 .ln').forEach(function(ln, li){
-    var target = ln.dataset.text;
-    if (reduced) { ln.textContent = target; return; }
-    var frame = 0, total = 26 + li * 10;
-    (function run(){
-      var out = '';
-      for (var i = 0; i < target.length; i++) {
-        var lock = (i / target.length) * total * .75 + 6;
-        out += frame >= lock ? target[i] : glyphs[Math.floor(Math.random() * glyphs.length)];
+  // ---------- page-load sequence ----------
+  var glyphs = 'ABCDEFGHKMNPRSTUVXYZ0123456789';
+  var hero = document.querySelector('.hero');
+  function ease(t){ return 1 - Math.pow(1 - t, 3); }
+  function decrypt(){
+    document.querySelectorAll('h1 .ln').forEach(function(ln, li){
+      var target = ln.dataset.text; ln.textContent = '';
+      var cells = target.split('').map(function(ch){
+        var c = el('span','ch', ch); ln.appendChild(c); return c;
+      });
+      // lock every letter to its final width so scrambling never shifts the layout
+      cells.forEach(function(c){ c.style.width = c.getBoundingClientRect().width + 'px'; });
+      var dur = 1100 + li * 250, delay = 150 + li * 180, t0 = null, lastSwap = 0;
+      function frame(ts){
+        if (t0 === null) t0 = ts;
+        var el_ = ts - t0 - delay;
+        if (el_ < 0) { requestAnimationFrame(frame); return; }
+        var p = Math.min(1, el_ / dur), swap = ts - lastSwap > 55;
+        if (swap) lastSwap = ts;
+        cells.forEach(function(c, i){
+          var lockAt = (i + 1) / (cells.length + 1);
+          if (ease(p) >= lockAt) { if (!c.classList.contains('on')) { c.textContent = target[i]; c.classList.add('on'); } }
+          else if (swap) { c.textContent = glyphs[Math.floor(Math.random() * glyphs.length)]; }
+        });
+        if (p < 1) requestAnimationFrame(frame);
+        else cells.forEach(function(c, i){ c.textContent = target[i]; c.classList.add('on'); });
       }
-      ln.textContent = out;
-      if (frame++ < total) setTimeout(run, 40); else ln.textContent = target;
-    })();
-  });
+      requestAnimationFrame(frame);
+    });
+  }
+  var started = false;
+  function begin(){
+    if (started) return; started = true;
+    hero.classList.add('ready');
+    if (!reduced) decrypt();
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(begin);
+  setTimeout(begin, 1200);
 
   // ---------- radar ----------
   var items = [
@@ -356,7 +392,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     {t:'Mastercard Cyber Experience', k:'Simulation', st:'Completed', d:'Security Awareness Team analyst, phishing identification.', h:'#work', a:300, r:.32, ice:1},
     {t:'Cybersecurity home lab', k:'Lab', st:'Hands-on', d:'Attack simulation, IOC analysis and detection tuning.', h:'#work', a:322, r:.6, ice:1},
     {t:'TryHackMe labs', k:'Lab', st:'Ongoing', d:'Threat detection, network analysis and attacker techniques.', h:'#work', a:342, r:.86, ice:1},
-    {t:'Police Officer, Public Order Policing', k:'Experience', st:'2022 to present', d:'Real-time incident response, investigation and accurate reporting.', h:'#experience', a:6, r:.2, ice:1}
+    {t:'Police Officer, South African Police Service', k:'Experience', st:'2022 to present', d:'Real-time incident response, investigation and accurate reporting.', h:'#experience', a:6, r:.2, ice:1}
   ];
   var scope = document.getElementById('scope'), cv = document.getElementById('radar'), ctx = cv.getContext('2d');
   var readout = document.getElementById('readout'), blips = [], selected = 0;
@@ -406,7 +442,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     });
   }
   var last = 0;
-  function loop(ts){ if (!last) last = ts; var dt = ts - last; last = ts; sweep = (sweep + dt * .06) % 360; draw(); requestAnimationFrame(loop); }
+  function loop(ts){ if (!last) last = ts; var dt = Math.min(ts - last, 50); last = ts; sweep = (sweep + dt * .06) % 360; draw(); requestAnimationFrame(loop); }
   size(); window.addEventListener('resize', size);
   if (!reduced) requestAnimationFrame(loop); else { sweep = 40; draw(); }
 
@@ -505,7 +541,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 
   // ---------- experience compare ----------
   var jobs = [
-    { t:'Police Officer, Public Order Policing', d:'South Africa, April 2022 to present',
+    { t:'Police Officer, South African Police Service', d:'April 2022 to present',
       a:['Respond to real-time incidents requiring rapid assessment and escalation','Follow strict procedures and protocols under high-pressure conditions','Conduct investigations and produce detailed, accurate reports','Maintain situational awareness and risk assessment in dynamic environments','Work in coordinated teams with clear communication and handovers'],
       b:['Real-time incident response and decision-making','Strong investigative and analytical mindset','Accurate documentation and reporting','Strict adherence to SOPs and escalation protocols','Shift-based operational readiness, suited to 24/7 shift environments'] },
     { t:'Assistant Manager, Takealot', d:'South Africa, September 2021 to April 2022',
