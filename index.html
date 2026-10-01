@@ -246,13 +246,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   <header class="hero">
     <div class="wrap">
       <div>
-        <span class="status intro-item"><i aria-hidden="true"></i>SOC Analyst at Cyber83 from October 2026</span>
+        <span class="status intro-item"><i aria-hidden="true"></i>SOC Analyst at Cyber83</span>
         <h1 class="intro-item" aria-label="Siegfried Minnie"><span class="ln" data-text="Siegfried" aria-hidden="true">Siegfried</span><span class="ln" data-text="Minnie" aria-hidden="true">Minnie</span></h1>
         <p class="lede intro-item"><b>CompTIA Security+ and ISC2 CC</b> certified, bringing a police investigator's discipline to threat detection and incident response.</p>
         <div class="acts intro-item">
           <a class="btn" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Get in touch</a>
           <a class="btn o" href="https://www.linkedin.com/in/siegfried-minnie-cc-79664418b" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn o" href="https://share.google/3ftGLNx1pvjqXxftJ" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn o" href="https://github.com/siegfried-alt" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="radar intro-item">
@@ -301,7 +301,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   <section id="experience" style="padding-top:0">
     <div class="wrap">
       <div class="sh"><h2>Experience</h2><p>Drag the slider across each role to translate the job into what it brings to a security team.</p></div>
-      <article class="now"><div><div class="tag">Next role</div><h3>SOC Analyst, Cyber83</h3></div><span class="d">Starting 1 October 2026</span></article>
+      <article class="now"><div><div class="tag">Current role</div><h3>SOC Analyst, Cyber83</h3></div><span class="d">October 2026 to present</span></article>
       <div id="jobs"></div>
     </div>
   </section>
@@ -314,12 +314,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
   <section id="contact" class="contact" style="padding-top:0">
     <div class="wrap">
       <h2>Let's talk</h2>
-      <p>I'm joining Cyber83 as a SOC Analyst in October 2026. For professional enquiries or just to connect, reach out any time.</p>
+      <p>I'm a SOC Analyst at Cyber83. For professional enquiries or just to connect, reach out any time.</p>
       <button class="big-mail" id="copyEmail" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>siegm60@gmail.com</button>
       <div class="sub-links">
         <a class="btn o" href="mailto:siegm60@gmail.com">Send an email</a>
         <a class="btn o" href="https://www.linkedin.com/in/siegfried-minnie-cc-79664418b" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn o" href="https://share.google/3ftGLNx1pvjqXxftJ" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn o" href="https://github.com/siegfried-alt" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
@@ -396,7 +396,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 
   // ---------- radar ----------
   var items = [
-    {t:'SOC Analyst, Cyber83', k:'Experience', st:'From October 2026', d:'Joining Cyber83 as a SOC Analyst, starting 1 October 2026.', h:'#experience', a:110, r:.3},
+    {t:'SOC Analyst, Cyber83', k:'Experience', st:'October 2026 to present', d:'SOC Analyst at Cyber83 since 1 October 2026.', h:'#experience', a:110, r:.3},
     {t:'CompTIA Security+', k:'Certification', st:'Certified', d:'Core security operations, threats, architecture and incident response.', h:'#certs', a:20, r:.42},
     {t:'ISC2 Certified in Cybersecurity', k:'Certification', st:'Certified', d:'Security principles, access control, network security and operations.', h:'#certs', a:55, r:.72},
     {t:'CompTIA CySA+', k:'Certification', st:'In progress', d:'Threat and vulnerability management, incident response and reporting.', h:'#certs', a:88, r:.5},
@@ -409,7 +409,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
     {t:'Mastercard Cyber Experience', k:'Simulation', st:'Completed', d:'Security Awareness Team analyst, phishing identification.', h:'#work', a:300, r:.32, ice:1},
     {t:'Cybersecurity home lab', k:'Lab', st:'Hands-on', d:'Attack simulation, IOC analysis and detection tuning.', h:'#work', a:322, r:.6, ice:1},
     {t:'TryHackMe labs', k:'Lab', st:'Ongoing', d:'Threat detection, network analysis and attacker techniques.', h:'#work', a:342, r:.86, ice:1},
-    {t:'Police Officer, South African Police Service', k:'Experience', st:'2022 to present', d:'Real-time incident response, investigation and accurate reporting.', h:'#experience', a:6, r:.2, ice:1}
+    {t:'Police Officer, South African Police Service', k:'Experience', st:'2022 to 2026', d:'Real-time incident response, investigation and accurate reporting.', h:'#experience', a:6, r:.2, ice:1}
   ];
   var scope = document.getElementById('scope'), cv = document.getElementById('radar'), ctx = cv.getContext('2d');
   var readout = document.getElementById('readout'), blips = [], selected = 0;
@@ -558,7 +558,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-ite
 
   // ---------- experience compare ----------
   var jobs = [
-    { t:'Police Officer, South African Police Service', d:'April 2022 to present',
+    { t:'Police Officer, South African Police Service', d:'April 2022 to September 2026',
       a:['Respond to real-time incidents requiring rapid assessment and escalation','Follow strict procedures and protocols under high-pressure conditions','Conduct investigations and produce detailed, accurate reports','Maintain situational awareness and risk assessment in dynamic environments','Work in coordinated teams with clear communication and handovers'],
       b:['Real-time incident response and decision-making','Strong investigative and analytical mindset','Accurate documentation and reporting','Strict adherence to SOPs and escalation protocols','Shift-based operational readiness, suited to 24/7 shift environments'] },
     { t:'Assistant Manager, Takealot', d:'South Africa, September 2021 to April 2022',
